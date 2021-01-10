@@ -3801,70 +3801,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   methods: {
-    createCalendar: function createCalendar() {
+    getData: function getData() {
       var _this = this;
 
-      var datas = [];
-      (0,date_fns__WEBPACK_IMPORTED_MODULE_2__.default)({
-        start: this.start_date,
-        end: this.end_date
-      }).forEach(function (month) {
-        var days = [];
-        var start_month = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(month);
-        var end_month = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(month);
-        (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)({
-          start: start_month,
-          end: end_month
-        }).forEach(function (day) {
-          var day_events = [];
-
-          _this.events.forEach(function (event) {
-            if ((0,date_fns__WEBPACK_IMPORTED_MODULE_6__.default)(day, new Date(event.date[0])) && (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.default)(day, new Date(event.date[1])) || (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.default)(day, new Date(event.date[0])) || (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.default)(day, new Date(event.date[1]))) {
-              console.log(day);
-              if (event.interval.includes((0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "EEE"))) day_events.push(event.name);
-            }
-          });
-
-          days.push({
-            day_of_month: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "d"),
-            day_of_week: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "EEE"),
-            day_events: day_events
-          });
-        });
-        datas.push({
-          month: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(month, "MMM yyyy"),
-          days: days.reverse()
-        });
-      });
-      this.calendar = datas.reverse();
-    },
-    addEvent: function addEvent(e) {
-      var _this2 = this;
-
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _yield$axios$get, data;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                e.preventDefault();
+                _context.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/event");
 
-                if (!(_this2.validate() === false)) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 3:
-                _context.next = 5;
-                return _this2.saveToDB();
+              case 2:
+                _yield$axios$get = _context.sent;
+                data = _yield$axios$get.data;
+                data.map(function (item) {
+                  _this.events.push({
+                    date: [item.start, item.end],
+                    interval: item.interval.split(","),
+                    name: item.name
+                  });
+                });
 
               case 5:
-                _this2.events.push(JSON.parse(JSON.stringify(_this2.current_event)));
-
-                _this2.createCalendar();
-
-              case 7:
               case "end":
                 return _context.stop();
             }
@@ -3872,28 +3833,117 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    saveToDB: function saveToDB() {
-      var _this3 = this;
+    createCalendar: function createCalendar() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var datas;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/event", {
-                  name: _this3.current_event.name,
-                  interval: _this3.current_event.interval,
-                  start: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(_this3.current_event.date[0], "yyyy-MM-dd HH:mm:ss"),
-                  end: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(_this3.current_event.date[1], "yyyy-MM-dd HH:mm:ss")
-                });
+                datas = [];
+                _context2.next = 3;
+                return _this2.getData();
 
-              case 2:
+              case 3:
+                (0,date_fns__WEBPACK_IMPORTED_MODULE_2__.default)({
+                  start: _this2.start_date,
+                  end: _this2.end_date
+                }).forEach(function (month) {
+                  var days = [];
+                  var start_month = (0,date_fns__WEBPACK_IMPORTED_MODULE_3__.default)(month);
+                  var end_month = (0,date_fns__WEBPACK_IMPORTED_MODULE_4__.default)(month);
+                  (0,date_fns__WEBPACK_IMPORTED_MODULE_5__.default)({
+                    start: start_month,
+                    end: end_month
+                  }).forEach(function (day) {
+                    var day_events = [];
+
+                    _this2.events.forEach(function (event) {
+                      if ((0,date_fns__WEBPACK_IMPORTED_MODULE_6__.default)(day, new Date(event.date[0])) && (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.default)(day, new Date(event.date[1])) || (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.default)(day, new Date(event.date[0])) || (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.default)(day, new Date(event.date[1]))) {
+                        console.log(day);
+                        if (event.interval.includes((0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "EEE"))) day_events.push(event.name);
+                      }
+                    });
+
+                    days.push({
+                      day_of_month: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "d"),
+                      day_of_week: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(day, "EEE"),
+                      day_events: day_events
+                    });
+                  });
+                  datas.push({
+                    month: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(month, "MMM yyyy"),
+                    days: days.reverse()
+                  });
+                });
+                _this2.calendar = datas.reverse();
+
+              case 5:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2);
+      }))();
+    },
+    addEvent: function addEvent(e) {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                e.preventDefault();
+
+                if (!(_this3.validate() === false)) {
+                  _context3.next = 3;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 3:
+                _context3.next = 5;
+                return _this3.saveToDB();
+
+              case 5:
+                _this3.events.push(JSON.parse(JSON.stringify(_this3.current_event)));
+
+                _this3.createCalendar();
+
+              case 7:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    saveToDB: function saveToDB() {
+      var _this4 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/event", {
+                  name: _this4.current_event.name,
+                  interval: _this4.current_event.interval,
+                  start: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(_this4.current_event.date[0], "yyyy-MM-dd HH:mm:ss"),
+                  end: (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.default)(_this4.current_event.date[1], "yyyy-MM-dd HH:mm:ss")
+                });
+
+              case 2:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
       }))();
     },
     validate: function validate() {
@@ -87110,7 +87160,7 @@ var render = function() {
                   _c(
                     "td",
                     _vm._l(day.day_events, function(day_event, index3) {
-                      return _c("h5", { key: index3 }, [
+                      return _c("span", { key: index3 }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t\t" +
                             _vm._s(day_event) +

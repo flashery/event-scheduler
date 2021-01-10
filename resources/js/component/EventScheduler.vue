@@ -49,9 +49,9 @@
 					<tr v-for="(day, day_index) in month.days" :key="day_index">
 						<td>{{ `${day.day_of_month} ${day.day_of_week}` }}</td>
 						<td>
-							<h5 v-for="(day_event, index3) in day.day_events" :key="index3">
+							<span v-for="(day_event, index3) in day.day_events" :key="index3">
 								{{ day_event }},
-							</h5>
+							</span>
 						</td>
 					</tr>
 				</table>
@@ -96,8 +96,19 @@ export default {
 	},
 
 	methods: {
-		createCalendar() {
+		async getData() {
+			const { data } = await axios.get("/event");
+			data.map((item) => {
+				this.events.push({
+					date: [item.start, item.end],
+					interval: item.interval.split(","),
+					name: item.name,
+				});
+			});
+		},
+		async createCalendar() {
 			const datas = [];
+			await this.getData();
 
 			eachMonthOfInterval({
 				start: this.start_date,
