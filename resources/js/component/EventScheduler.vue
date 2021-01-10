@@ -25,16 +25,23 @@
 			<div class="block">
 				<span>Select Days</span>
 			</div>
-
-			<div class="checkbox" v-for="(interval, index) in intervals" :key="index">
-				<input
-					type="checkbox"
-					v-model="current_event.interval"
-					:value="interval"
-				/>
-				{{ interval }}
+			<div class="block">
+				<div
+					class="checkbox"
+					v-for="(interval, index) in intervals"
+					:key="index"
+				>
+					<input
+						type="checkbox"
+						v-model="current_event.interval"
+						:value="interval"
+					/>
+					{{ interval }}
+				</div>
 			</div>
-			<el-button type="primary" @click="addEvent">Add Event</el-button>
+			<div class="block">
+				<el-button type="primary" @click="addEvent">Add Event</el-button>
+			</div>
 		</el-form>
 
 		<div class="calendar">
@@ -179,10 +186,14 @@ export default {
 .checkbox {
 	display: inline;
 }
+.block {
+	display: block;
+	padding: 20px;
+}
 .form {
 	float: left;
 	padding: 20px;
-	width: 30%;
+	width: 20%;
 }
 .calendar {
 	width: 70%;
