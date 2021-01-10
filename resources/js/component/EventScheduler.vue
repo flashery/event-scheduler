@@ -2,17 +2,17 @@
 	<div>
 		<el-form :model="current_event" label-width="120px" class="form">
 			<div class="block">
-				<span v-html="error" style="color: red"></span>
+				<h5 v-html="error" style="color: red"></h5>
 			</div>
 			<div class="block">
-				<span>Event Name</span>
+				<h5>Event Name</h5>
 				<el-input
 					placeholder="Please input event name"
 					v-model="current_event.name"
 				></el-input>
 			</div>
 			<div class="block">
-				<span>Date Range</span>
+				<h5>Date Range</h5>
 				<el-date-picker
 					v-model="current_event.date"
 					type="daterange"
@@ -23,9 +23,7 @@
 				</el-date-picker>
 			</div>
 			<div class="block">
-				<span>Select Days</span>
-			</div>
-			<div class="block">
+				<h5>Select Days</h5>
 				<div
 					class="checkbox"
 					v-for="(interval, index) in intervals"
@@ -51,9 +49,9 @@
 					<tr v-for="(day, day_index) in month.days" :key="day_index">
 						<td>{{ `${day.day_of_month} ${day.day_of_week}` }}</td>
 						<td>
-							<span v-for="(day_event, index3) in day.day_events" :key="index3">
+							<h5 v-for="(day_event, index3) in day.day_events" :key="index3">
 								{{ day_event }},
-							</span>
+							</h5>
 						</td>
 					</tr>
 				</table>
@@ -194,10 +192,12 @@ export default {
 	float: left;
 	padding: 20px;
 	width: 20%;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 .calendar {
 	width: 70%;
 	float: left;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 table.day_table {
 	width: 100%;

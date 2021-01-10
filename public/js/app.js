@@ -3777,8 +3777,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5967,7 +5965,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.checkbox[data-v-0129609e] {\n\tdisplay: inline;\n}\n.block[data-v-0129609e] {\n\tdisplay: block;\n\tpadding: 20px;\n}\n.form[data-v-0129609e] {\n\tfloat: left;\n\tpadding: 20px;\n\twidth: 20%;\n}\n.calendar[data-v-0129609e] {\n\twidth: 70%;\n\tfloat: left;\n}\ntable.day_table[data-v-0129609e] {\n\twidth: 100%;\n}\ntable.day_table tr[data-v-0129609e]:nth-child(even) {\n\tfont-size: 12px;\n\tbackground-color: #cccccc;\n}\ntable.day_table tr[data-v-0129609e]:nth-child(odd) {\n\tfont-size: 12px;\n\tbackground-color: #f3f3f3;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.checkbox[data-v-0129609e] {\n\tdisplay: inline;\n}\n.block[data-v-0129609e] {\n\tdisplay: block;\n\tpadding: 20px;\n}\n.form[data-v-0129609e] {\n\tfloat: left;\n\tpadding: 20px;\n\twidth: 20%;\n\tfont-family: \"Franklin Gothic Medium\", \"Arial Narrow\", Arial, sans-serif;\n}\n.calendar[data-v-0129609e] {\n\twidth: 70%;\n\tfloat: left;\n\tfont-family: \"Franklin Gothic Medium\", \"Arial Narrow\", Arial, sans-serif;\n}\ntable.day_table[data-v-0129609e] {\n\twidth: 100%;\n}\ntable.day_table tr[data-v-0129609e]:nth-child(even) {\n\tfont-size: 12px;\n\tbackground-color: #cccccc;\n}\ntable.day_table tr[data-v-0129609e]:nth-child(odd) {\n\tfont-size: 12px;\n\tbackground-color: #f3f3f3;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -86968,7 +86966,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "block" }, [
-            _c("span", {
+            _c("h5", {
               staticStyle: { color: "red" },
               domProps: { innerHTML: _vm._s(_vm.error) }
             })
@@ -86978,7 +86976,7 @@ var render = function() {
             "div",
             { staticClass: "block" },
             [
-              _c("span", [_vm._v("Event Name")]),
+              _c("h5", [_vm._v("Event Name")]),
               _vm._v(" "),
               _c("el-input", {
                 attrs: { placeholder: "Please input event name" },
@@ -86998,7 +86996,7 @@ var render = function() {
             "div",
             { staticClass: "block" },
             [
-              _c("span", [_vm._v("Date Range")]),
+              _c("h5", [_vm._v("Date Range")]),
               _vm._v(" "),
               _c("el-date-picker", {
                 attrs: {
@@ -87019,64 +87017,64 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "block" }, [
-            _c("span", [_vm._v("Select Days")])
-          ]),
-          _vm._v(" "),
           _c(
             "div",
             { staticClass: "block" },
-            _vm._l(_vm.intervals, function(interval, index) {
-              return _c("div", { key: index, staticClass: "checkbox" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.current_event.interval,
-                      expression: "current_event.interval"
-                    }
-                  ],
-                  attrs: { type: "checkbox" },
-                  domProps: {
-                    value: interval,
-                    checked: Array.isArray(_vm.current_event.interval)
-                      ? _vm._i(_vm.current_event.interval, interval) > -1
-                      : _vm.current_event.interval
-                  },
-                  on: {
-                    change: function($event) {
-                      var $$a = _vm.current_event.interval,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = interval,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 &&
-                            _vm.$set(
-                              _vm.current_event,
-                              "interval",
-                              $$a.concat([$$v])
-                            )
+            [
+              _c("h5", [_vm._v("Select Days")]),
+              _vm._v(" "),
+              _vm._l(_vm.intervals, function(interval, index) {
+                return _c("div", { key: index, staticClass: "checkbox" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.current_event.interval,
+                        expression: "current_event.interval"
+                      }
+                    ],
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      value: interval,
+                      checked: Array.isArray(_vm.current_event.interval)
+                        ? _vm._i(_vm.current_event.interval, interval) > -1
+                        : _vm.current_event.interval
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.current_event.interval,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = interval,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.current_event,
+                                "interval",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.current_event,
+                                "interval",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
                         } else {
-                          $$i > -1 &&
-                            _vm.$set(
-                              _vm.current_event,
-                              "interval",
-                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                            )
+                          _vm.$set(_vm.current_event, "interval", $$c)
                         }
-                      } else {
-                        _vm.$set(_vm.current_event, "interval", $$c)
                       }
                     }
-                  }
-                }),
-                _vm._v("\n\t\t\t\t" + _vm._s(interval) + "\n\t\t\t")
-              ])
-            }),
-            0
+                  }),
+                  _vm._v("\n\t\t\t\t" + _vm._s(interval) + "\n\t\t\t")
+                ])
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _c(
@@ -87112,7 +87110,7 @@ var render = function() {
                   _c(
                     "td",
                     _vm._l(day.day_events, function(day_event, index3) {
-                      return _c("span", { key: index3 }, [
+                      return _c("h5", { key: index3 }, [
                         _vm._v(
                           "\n\t\t\t\t\t\t\t" +
                             _vm._s(day_event) +
